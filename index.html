@@ -3,222 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ansh Jain | GenAI Software Engineer</title>
+    <title>Ansh Jain | GenAI Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0f172a;
-            --card-bg: #1e293b;
-            --neon-blue: #38bdf8;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
+            --sidebar-bg: #000000;
+            --main-bg: #f8f9fa;
+            --accent-purple: #8e44ad;
+            --accent-blue: #3498db;
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --text-muted: #7f8c8d;
+            --card-white: #ffffff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--main-bg); display: flex; color: var(--text-dark); }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
+        /* Sidebar Navigation */
+        aside {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            height: 100vh;
+            position: fixed;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        /* Hero Section */
-        header {
-            padding: 80px 20px;
-            text-align: center;
-            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
-            border-bottom: 1px solid #334155;
-        }
-
-        .profile-img-container {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            border: 3px solid var(--neon-blue);
-            overflow: hidden;
-            background: #334155;
+        nav ul { list-style: none; }
+        nav ul li { margin-bottom: 30px; }
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: 0.3s;
             display: flex;
             align-items: center;
-            justify-content: center;
+        }
+        nav ul li a:hover { color: var(--accent-blue); }
+        nav ul li a::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            margin-left: 15px;
+            opacity: 0;
+        }
+        nav ul li a:hover::after { opacity: 1; }
+
+        /* Main Content Area */
+        main { margin-left: 280px; width: calc(100% - 280px); padding: 80px 10% 80px 5%; }
+
+        .header-name { font-size: 80px; font-weight: 700; line-height: 1; margin-bottom: 50px; }
+        .header-name span { color: transparent; -webkit-text-stroke: 1px var(--text-dark); }
+
+        /* Profile Card Section */
+        .profile-container { display: flex; align-items: center; gap: 50px; margin-bottom: 80px; }
+        
+        .image-wrapper { position: relative; }
+        .profile-pic {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            overflow: hidden;
+            border: 10px solid #fff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .profile-pic img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .hi-badge {
+            position: absolute;
+            bottom: 30px;
+            left: -10px;
+            background: #cbd5e0;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
         }
 
-        .profile-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .tagline { font-size: 1.2rem; color: var(--neon-blue); font-weight: 500; margin-bottom: 20px; }
-
-        .contact-info { color: var(--text-dim); font-size: 0.9rem; }
-        .contact-info a { color: var(--neon-blue); text-decoration: none; margin: 0 10px; border-bottom: 1px solid transparent; transition: 0.3s; }
-        .contact-info a:hover { border-bottom: 1px solid var(--neon-blue); }
-
-        /* Content Sections */
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-
-        section { margin-bottom: 60px; }
-
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
+        .role-title { font-size: 48px; font-weight: 700; margin-bottom: 20px; }
+        
+        /* Skill Badges */
+        .badge-container { display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+        .badge {
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            font-weight: 500;
             display: flex;
             align-items: center;
             gap: 10px;
+            background: white;
         }
+        .badge i { color: var(--accent-purple); }
 
-        h2::after { content: ""; height: 1px; flex-grow: 1; background: #334155; }
+        .about-text { color: var(--text-muted); line-height: 1.8; max-width: 800px; font-size: 16px; }
 
-        /* Experience & Projects Cards */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid #334155;
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            transition: transform 0.2s;
+        /* Section Layouts */
+        section { margin-top: 100px; }
+        h2 { font-size: 32px; margin-bottom: 40px; position: relative; }
+        h2::before { content: '// '; color: var(--text-muted); font-size: 20px; }
+
+        .content-card {
+            background: var(--card-white);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-purple);
         }
+        .card-header { display: flex; justify-content: space-between; margin-bottom: 20px; align-items: baseline; }
+        .card-title { font-size: 22px; font-weight: 700; color: var(--accent-blue); }
+        .card-meta { color: var(--text-muted); font-size: 14px; }
+        
+        ul.bullet-points { list-style: none; }
+        ul.bullet-points li { margin-bottom: 15px; padding-left: 25px; position: relative; color: var(--text-muted); }
+        ul.bullet-points li::before { content: '→'; position: absolute; left: 0; color: var(--accent-purple); font-weight: bold; }
 
-        .card:hover { transform: translateY(-5px); border-color: var(--neon-blue); }
-
-        .card-header { display: flex; justify-content: space-between; margin-bottom: 15px; }
-        .title { font-weight: bold; font-size: 1.2rem; color: var(--neon-blue); }
-        .meta { color: var(--text-dim); font-size: 0.9rem; }
-
-        ul { list-style: none; }
-        li { margin-bottom: 10px; position: relative; padding-left: 20px; color: var(--text-dim); }
-        li::before { content: "▹"; position: absolute; left: 0; color: var(--neon-blue); }
-
-        /* Skills */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .skill-group { background: #0f172a; padding: 20px; border-radius: 8px; border: 1px solid #1e293b; }
-        .skill-group h3 { font-size: 1rem; color: var(--neon-blue); margin-bottom: 10px; }
-        .skill-list { color: var(--text-dim); font-size: 0.9rem; }
-
-        footer { text-align: center; padding: 40px; border-top: 1px solid #334155; color: var(--text-dim); font-size: 0.8rem; }
+        @media (max-width: 1024px) {
+            aside { width: 80px; padding: 40px 10px; }
+            nav ul li a span { display: none; }
+            main { margin-left: 80px; width: calc(100% - 80px); }
+            .header-name { font-size: 50px; }
+            .profile-container { flex-direction: column; text-align: center; align-items: center; }
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="profile-img-container">
-        <img src="https://raw.githubusercontent.com/Ajraja0205/Ajraja0205.github.io/main/image.jpg" alt="Ansh Jain">
-    </div>
-    <h1>ANSH JAIN</h1>
-    <p class="tagline">GenAI Software Engineer</p>
-    <div class="contact-info">
-        Baran, Rajasthan | (+91) 8209277624 | anshjainraja@gmail.com
-        <br><br>
-        <a href="https://www.linkedin.com/in/ansh-jain1980/" target="_blank">LinkedIn</a>
-    </div>
-</header>
-
-<div class="container">
-    <section>
-        <h2>About Me</h2>
-        <p style="color: var(--text-dim);">
-            GenAI-focused Software Engineer with 1.5 years of experience building automation and AI-powered systems in production environments. 
-            Expert in integrating OpenAI APIs and developing <strong>Retrieval-Augmented Generation (RAG)</strong> pipelines using embeddings and vector similarity search.
-        </p>
-    </section>
-
-    <section>
-        <h2>Technical Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-group">
-                <h3>GenAI & ML</h3>
-                <div class="skill-list">OpenAI APIs, RAG, Prompt Engineering, Vector Search (Cosine Similarity), Scikit-learn.</div>
-            </div>
-            <div class="skill-group">
-                <h3>Backend</h3>
-                <div class="skill-list">Python (Primary), FastAPI, REST APIs, Core Java, Spring Boot.</div>
-            </div>
-            <div class="skill-group">
-                <h3>Observability</h3>
-                <div class="skill-list">Catchpoint, Grafana, Kibana, New Relic.</div>
-            </div>
-            <div class="skill-group">
-                <h3>Automation</h3>
-                <div class="skill-list">Selenium, Playwright.</div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <h2>Professional Experience</h2>
-        <div class="card">
-            <div class="card-header">
-                <div>
-                    <div class="title">Engineer</div>
-                    <div style="color: var(--text-main);">Creospan Pvt Ltd (Client: Verizon)</div>
-                </div>
-                <div class="meta">Sept 2024 – Present</div>
-            </div>
+    <aside>
+        <nav>
             <ul>
-                <li>Designed end-to-end Synthetic Monitoring solutions across production environments to track latency and reliability.</li>
-                <li>Built AI-powered ticket triaging systems using OpenAI APIs to classify incidents and suggest priority levels.</li>
-                <li>Implemented RAG pipelines using embeddings to enable contextual Q&A over monitoring datasets.</li>
-                <li>Developed Python automation to detect traffic spikes and performance anomalies in high-volume environments.</li>
+                <li><a href="#about"><span>About Me</span></a></li>
+                <li><a href="#skills"><span>Skills</span></a></li>
+                <li><a href="#experience"><span>Experience</span></a></li>
+                <li><a href="#projects"><span>Projects</span></a></li>
+                <li><a href="#contact"><span>Contact</span></a></li>
             </ul>
+        </nav>
+        <div style="color: white; font-size: 20px;">
+            <a href="https://www.linkedin.com/in/ansh-jain1980/" style="color:white; text-decoration:none;">in</a>
         </div>
+    </aside>
 
-        <div class="card">
-            <div class="card-header">
-                <div>
-                    <div class="title">Intern</div>
-                    <div style="color: var(--text-main);">Cognizant</div>
+    <main>
+        <div class="header-name">Ansh <span>Jain</span></div>
+
+        <div id="about" class="profile-container">
+            <div class="image-wrapper">
+                <div class="profile-pic">
+                    <img src="https://raw.githubusercontent.com/Ajraja0205/Ajraja0205.github.io/main/image.jpg" alt="Ansh Jain">
                 </div>
-                <div class="meta">June 2024 – Aug 2024</div>
+                <div class="hi-badge">HI _</div>
             </div>
-            <ul>
-                <li>Contributed to enterprise web application modules using modern web standards.</li>
-                <li>Collaborated with senior engineers to refactor server-side code for system scalability.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section>
-        <h2>Core AI Projects</h2>
-        <div class="card">
-            <div class="title">Context-Aware Monitoring Assistant (RAG)</div>
-            <p class="meta">Nov 2025</p>
-            <p style="margin: 10px 0; color: var(--text-dim);">Engineered document chunking and embedding generation for monitoring logs. Used top-k vector similarity search to retrieve relevant context and reduce LLM hallucinations.</p>
-        </div>
-
-        <div class="card">
-            <div class="title">AI Ticket Triaging System</div>
-            <p class="meta">Aug 2025</p>
-            <p style="margin: 10px 0; color: var(--text-dim);">Developed an LLM-based system to prioritize incident tickets via structured prompting and JSON output validation.</p>
+            <div>
+                <h1 class="role-title">GenAI Developer</h1>
+                <div class="badge-container">
+                    <div class="badge">OpenAI APIs</div>
+                    <div class="badge">RAG Pipelines</div>
+                    <div class="badge">FastAPI</div>
+                    <div class="badge">Python</div>
+                </div>
+                <p class="about-text">
+                    GenAI-focused Software Engineer with 1.5 years of experience building automation and AI-powered systems in production environments. Expert in integrating OpenAI APIs and developing Retrieval-Augmented Generation (RAG) pipelines using embeddings and vector similarity search.
+                </p>
+            </div>
         </div>
 
-        <div class="card">
-            <div class="title">Intelligent Log Anomaly Detection</div>
-            <p class="meta">Mar 2025</p>
-            <p style="margin: 10px 0; color: var(--text-dim);">Applied Isolation Forest techniques to detect abnormal traffic patterns and deployed real-time alert endpoints via FastAPI.</p>
-        </div>
-    </section>
+        <section id="experience">
+            <h2>Experience</h2>
+            <div class="content-card">
+                <div class="card-header">
+                    <div class="card-title">Engineer | Creospan (Client: Verizon)</div>
+                    <div class="card-meta">Sept 2024 – Present</div>
+                </div>
+                <ul class="bullet-points">
+                    <li>Designed and owned end-to-end Synthetic Monitoring solutions using Catchpoint across production environments, tracking latency, availability, and reliability KPIs.</li>
+                    <li>Built Python-based automation to analyze monitoring datasets, detect traffic spikes/drops, and identify performance anomalies in high-volume environments.</li>
+                    <li>Built AI-powered ticket triaging systems using OpenAI APIs to classify incidents and suggest priority levels based on contextual understanding.</li>
+                    <li>Implemented prompt-engineered workflows to generate structured summaries from logs and monitoring metrics.</li>
+                    <li>Designed and implemented a Retrieval-Augmented Generation (RAG) pipeline using embeddings and vector similarity search to enable contextual Q&A over monitoring datasets.</li>
+                    <li>Evaluated LLM-generated summaries for relevance and grounding, comparing base model responses with retrieval-augmented outputs.</li>
+                </ul>
+            </div>
 
-    <section>
-        <h2>Education & Certifications</h2>
-        <p style="color: var(--text-dim);">
-            <strong>Chandigarh University</strong> | B.E. in Computer Science | CGPA: 8.25<br><br>
-            <strong>Microsoft Certified:</strong> GitHub Copilot (Dec 2025)
-        </p>
-    </section>
-</div>
+            <div class="content-card">
+                <div class="card-header">
+                    <div class="card-title">Intern | Cognizant</div>
+                    <div class="card-meta">June 2024 – Aug 2024</div>
+                </div>
+                <ul class="bullet-points">
+                    <li>Contributed to enterprise web application modules using HTML, CSS, and JavaScript in an Agile development environment.</li>
+                    <li>Gained exposure to large-scale enterprise workflow automation and system integration practices.</li>
+                </ul>
+            </div>
+        </section>
 
-<footer>
-    &copy; 2026 Ansh Jain | Built with a focus on GenAI & Backend Engineering
-</footer>
+        <section id="projects">
+            <h2>Core Projects</h2>
+            <div class="content-card">
+                <div class="card-header">
+                    <div class="card-title">Context-Aware Monitoring Assistant (RAG)</div>
+                    <div class="card-meta">Nov 2025</div>
+                </div>
+                <ul class="bullet-points">
+                    <li>Engineered document chunking and embedding generation pipelines for monitoring logs and incident datasets using OpenAI and Python.</li>
+                    <li>Stored embeddings and implemented top-k vector similarity search using cosine similarity to retrieve contextually relevant information.</li>
+                    <li>Injected retrieved context into structured prompts to reduce hallucinations and improve response grounding.</li>
+                    <li>Designed a query-to-context pipeline enabling natural language Q&A over domain-specific datasets.</li>
+                    <li>Developed REST endpoints using FastAPI to serve retrieval and response generation pipelines for internal tools.</li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <div class="card-header">
+                    <div class="card-title">AI Ticket Triaging System</div>
+                    <div class="card-meta">Aug 2025</div>
+                </div>
+                <ul class="bullet-points">
+                    <li>Developed an LLM-based classification system to categorize and prioritize incident tickets using structured prompting with OpenAI API.</li>
+                    <li>Designed prompt templates to generate JSON outputs for priority, category, and recommended actions.</li>
+                    <li>Implemented basic validation logic to ensure consistent and structured model responses.</li>
+                    <li>Exposed the LLM-based classification pipeline via REST APIs using FastAPI for backend integration.</li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <div class="card-header">
+                    <div class="card-title">Intelligent Log Anomaly Detection System</div>
+                    <div class="card-meta">Mar 2025</div>
+                </div>
+                <ul class="bullet-points">
+                    <li>Performed exploratory data analysis on application log metrics to identify abnormal patterns in traffic and response times using Scikit-learn and Pandas.</li>
+                    <li>Applied Isolation Forest and statistical thresholding techniques to detect anomalies in time-series monitoring data.</li>
+                    <li>Engineered features such as rolling averages and deviation metrics to improve anomaly sensitivity.</li>
+                    <li>Deployed anomaly detection model using FastAPI to expose real-time monitoring alert endpoints.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="badge-container">
+                <div class="badge">OpenAI APIs</div>
+                <div class="badge">Prompt Engineering</div>
+                <div class="badge">RAG</div>
+                <div class="badge">Embeddings</div>
+                <div class="badge">Vector Search</div>
+                <div class="badge">Scikit-learn</div>
+                <div class="badge">Python (Primary)</div>
+                <div class="badge">Java</div>
+                <div class="badge">SQL</div>
+                <div class="badge">FastAPI</div>
+                <div class="badge">Spring Boot</div>
+                <div class="badge">Catchpoint</div>
+                <div class="badge">Grafana</div>
+                <div class="badge">Kibana</div>
+                <div class="badge">GitHub Copilot</div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <p class="about-text">
+                Location: Baran, Rajasthan | Phone: (+91) 8209277624<br>
+                Email: <a href="mailto:anshjainraja@gmail.com" style="color:var(--accent-blue);">anshjainraja@gmail.com</a>
+            </p>
+        </section>
+
+        <footer style="margin-top: 100px; color: var(--text-muted); font-size: 14px;">
+            &copy; 2026 Ansh Jain | Chandigarh University (CGPA: 8.25)
+        </footer>
+    </main>
 
 </body>
 </html>
