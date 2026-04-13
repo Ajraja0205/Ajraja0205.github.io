@@ -10,23 +10,43 @@
             --accent: #3498db;
             --text: #333;
             --light: #f4f7f6;
+            --white: #ffffff;
         }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text); margin: 0; background: var(--light); }
         header { background: var(--primary); color: white; padding: 60px 20px; text-align: center; }
-        header h1 { margin: 0; font-size: 2.5em; letter-spacing: 2px; }
-        header p { font-size: 1.2em; opacity: 0.9; }
-        .container { max-width: 900px; margin: 20px auto; padding: 20px; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 8px; }
-        h2 { border-bottom: 2px solid var(--accent); padding-bottom: 10px; color: var(--primary); }
-        .job, .project { margin-bottom: 30px; }
-        .job-title { font-weight: bold; font-size: 1.2em; color: var(--accent); }
-        .company { font-style: italic; color: #666; }
-        .date { float: right; color: #888; font-size: 0.9em; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; background: #e8eff5; padding: 20px; border-radius: 8px; }
-        .skill-cat { font-weight: bold; color: var(--primary); display: block; margin-bottom: 5px; }
-        footer { text-align: center; padding: 40px; color: #888; font-size: 0.9em; }
-        @media (max-width: 600px) { .date { float: none; display: block; margin-bottom: 10px; } }
+        header h1 { margin: 0; font-size: 2.8em; letter-spacing: 2px; }
+        header p { font-size: 1.2em; opacity: 0.9; margin: 10px 0; }
+        .contact-links { margin-top: 15px; }
+        .contact-links a { color: #fff; text-decoration: none; margin: 0 10px; border: 1px solid rgba(255,255,255,0.3); padding: 5px 15px; border-radius: 20px; transition: 0.3s; }
+        .contact-links a:hover { background: var(--accent); border-color: var(--accent); }
+        
+        .container { max-width: 950px; margin: 30px auto; padding: 40px; background: var(--white); box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-radius: 12px; }
+        
+        h2 { border-bottom: 2px solid var(--accent); padding-bottom: 10px; color: var(--primary); margin-top: 40px; text-transform: uppercase; font-size: 1.3em; letter-spacing: 1px; }
+        
+        .job, .project { margin-bottom: 35px; position: relative; }
+        .job-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
+        .job-title { font-weight: bold; font-size: 1.25em; color: var(--accent); }
+        .company { font-style: italic; color: #555; font-size: 1.1em; }
+        .date { color: #888; font-size: 0.95em; }
+        
+        ul { padding-left: 20px; margin-top: 10px; }
+        li { margin-bottom: 10px; }
+        
+        .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+        .skill-box { background: #f9fbfc; padding: 15px; border-radius: 8px; border: 1px solid #edf2f7; }
+        .skill-cat { font-weight: bold; color: var(--primary); display: block; margin-bottom: 8px; border-bottom: 1px solid #ddd; }
+        
+        .cert-list { display: flex; gap: 10px; flex-wrap: wrap; list-style: none; padding: 0; }
+        .cert-item { background: #e8f4fd; color: #2980b9; padding: 8px 15px; border-radius: 5px; font-weight: 500; font-size: 0.9em; }
+
+        footer { text-align: center; padding: 50px; color: #999; font-size: 0.9em; background: #fff; border-top: 1px solid #eee; }
+        
+        @media (max-width: 600px) {
+            header h1 { font-size: 2em; }
+            .job-header { flex-direction: column; }
+            .date { margin-top: 5px; margin-bottom: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -34,81 +54,94 @@
 <header>
     <h1>ANSH JAIN</h1>
     <p>Backend Software Engineer | Java & Enterprise Infrastructure</p>
-    <p>Baran, Rajasthan | (+91) 8209277624 | anshjainraja@gmail.com</p>
+    <div class="contact-links">
+        <a href="mailto:anshjainraja@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/ansh-jain1980/" target="_blank">LinkedIn</a>
+    </div>
 </header>
 
 <div class="container">
     <h2>Professional Summary</h2>
     <p>
-        <strong>Backend Software Engineer</strong> with 1.5 years of experience specializing in the design and implementation of high-availability enterprise services[cite: 58]. 
-        Expert in <strong>Core Java and Object-Oriented Programming (OOP)</strong>, with a proven track record of architecting server-side logic and RESTful APIs for large-scale telecommunications infrastructure at <strong>Verizon</strong>[cite: 59]. 
-        Proficient in developing complex data pipelines, optimizing backend performance, and ensuring data consistency through rigorous JSON validation[cite: 60].
+        <strong>Backend Software Engineer</strong> with 1.5 years of experience specializing in the design and implementation of high-availability enterprise services. 
+        Expert in <strong>Core Java and Object-Oriented Programming (OOP)</strong>, with a proven track record of architecting server-side logic and RESTful APIs for large-scale telecommunications infrastructure at <strong>Verizon</strong>. 
+        Proficient in developing complex data pipelines, optimizing backend performance, and ensuring data consistency through rigorous JSON validation and structured error handling.
     </p>
 
     <h2>Technical Skills</h2>
-    <div class="skills-grid">
-        <div>
+    <div class="skills-container">
+        <div class="skill-box">
             <span class="skill-cat">Languages</span>
-            Java (Core, OOP, Collections), SQL, Python[cite: 78].
+            Java (Core, OOP, Collections), SQL, Python
         </div>
-        <div>
+        <div class="skill-box">
             <span class="skill-cat">Backend & APIs</span>
-            Spring Boot, RESTful API Development, Microservices, JSON Schema Validation[cite: 79].
+            Spring Boot, RESTful API Development, Microservices, JSON Schema Validation
         </div>
-        <div>
+        <div class="skill-box">
             <span class="skill-cat">Monitoring</span>
-            Catchpoint, Grafana, Kibana, New Relic[cite: 81].
+            Catchpoint, Grafana, Kibana, New Relic
         </div>
-        <div>
+        <div class="skill-box">
             <span class="skill-cat">Automation</span>
-            Selenium, Playwright[cite: 80].
+            Selenium, Playwright
         </div>
     </div>
 
     <h2>Professional Experience</h2>
     
     <div class="job">
-        <span class="date">Sept 2024 – Present</span>
-        <div class="job-title">Software Engineer</div>
+        <div class="job-header">
+            <div class="job-title">Software Engineer</div>
+            <div class="date">Sept 2024 – Present</div>
+        </div>
         <div class="company">Creospan Pvt Ltd (Client: Verizon Communications, US)</div>
         <ul>
-            <li><strong>Architected Enterprise Monitoring Microservices:</strong> Designed end-to-end synthetic monitoring solutions to track production-level latency and availability KPIs for high-volume environments[cite: 65].</li>
-            <li><strong>Engineered High-Throughput Data Pipelines:</strong> Developed backend processing logic to ingest and analyze massive monitoring datasets, implementing statistical algorithms to detect performance anomalies[cite: 66].</li>
-            <li><strong>Server-Side Orchestration:</strong> Developed the backend architecture for an incident triaging system using <strong>Java and REST APIs</strong> to automate classification and priority routing[cite: 67].</li>
-            <li><strong>Robust API Validation:</strong> Designed and maintained REST endpoints using structured JSON handling and validation logic to ensure data integrity[cite: 70].</li>
+            <li><strong>Architected Enterprise Monitoring Microservices:</strong> Designed and owned end-to-end synthetic monitoring solutions to track production-level latency and availability KPIs for Verizon's high-volume environments.</li>
+            <li><strong>Engineered High-Throughput Data Pipelines:</strong> Developed backend processing logic to ingest and analyze massive datasets, implementing statistical algorithms to detect performance anomalies.</li>
+            <li><strong>Server-Side Orchestration:</strong> Developed the backend architecture for an incident triaging system using <strong>Java and REST APIs</strong> to automate classification and priority routing.</li>
+            <li><strong>Optimized Data Retrieval:</strong> Engineered high-performance retrieval architectures focusing on backend implementation of vector search and document chunking.</li>
+            <li><strong>Robust API Validation:</strong> Designed and maintained REST endpoints using structured JSON handling to ensure high data integrity between internal tools and service layers.</li>
         </ul>
     </div>
 
     <div class="job">
-        <span class="date">June 2024 – Aug 2024</span>
-        <div class="job-title">Java Backend Intern</div>
+        <div class="job-header">
+            <div class="job-title">Java Backend Intern</div>
+            <div class="date">June 2024 – Aug 2024</div>
+        </div>
         <div class="company">Cognizant</div>
         <ul>
-            <li><strong>Enterprise Web Modules:</strong> Contributed to the development of backend modules for large-scale applications using <strong>Core Java</strong> and modern web standards[cite: 75].</li>
-            <li><strong>Performance Quality Assurance:</strong> Collaborated with senior engineers to refactor server-side code, ensuring alignment with enterprise-grade coding standards[cite: 76].</li>
+            <li><strong>Enterprise Web Modules:</strong> Contributed to the development of backend modules for large-scale applications using <strong>Core Java</strong> and modern web standards.</li>
+            <li><strong>System Reliability:</strong> Collaborated with senior engineers to refactor server-side code, ensuring alignment with enterprise-grade coding standards and system scalability.</li>
         </ul>
     </div>
 
-    <h2>Engineering Projects</h2>
+    <h2>System Engineering Projects</h2>
     
     <div class="project">
         <div class="job-title">Distributed Monitoring & Contextual Retrieval Service</div>
-        <p>Architected a high-performance retrieval pipeline to perform real-time contextual analysis over domain-specific monitoring datasets[cite: 58, 69]. Developed scalable REST endpoints to serve complex retrieval logic for integration with internal enterprise tools[cite: 70].</p>
+        <p>Architected a high-performance retrieval pipeline to perform real-time contextual analysis over monitoring datasets. Developed scalable REST endpoints to serve complex logic for seamless integration with enterprise monitoring tools.</p>
     </div>
 
     <div class="project">
         <div class="job-title">Enterprise Log Anomaly Detection System</div>
-        <p>Developed a backend monitoring engine to identify abnormal patterns in high-volume application metrics and response times[cite: 66, 71]. Exposed real-time alerting interfaces via RESTful APIs for seamless integration with observability dashboards[cite: 70, 81].</p>
+        <p>Developed a backend monitoring engine to identify abnormal patterns in high-volume application metrics. Exposed real-time alerting interfaces via <strong>RESTful APIs</strong>, improving system observability and incident response times.</p>
     </div>
 
     <h2>Education</h2>
-    <p><strong>Chandigarh University</strong> | Bachelor in Computer Science and Engineering [cite: 83, 84]<br>
-    Graduated June 2023 | CGPA: 8.25 [cite: 87]</p>
+    <p><strong>Chandigarh University</strong><br>
+    Bachelor in Computer Science and Engineering | Graduated June 2023 | <strong>CGPA: 8.25</strong></p>
+
+    <h2>Certifications</h2>
+    <ul class="cert-list">
+        <li class="cert-item">Microsoft: GitHub Copilot (Dec 2025)</li>
+    </ul>
 
 </div>
 
 <footer>
-    <p>&copy; 2026 Ansh Jain. Built for Performance & Scalability.</p>
+    <p>&copy; 2026 Ansh Jain | Optimized for Enterprise Java Backend Roles</p>
 </footer>
 
 </body>
