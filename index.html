@@ -13,6 +13,7 @@
             --text-dark: #000000;
             --text-muted: #666666;
             --light-gray: #f4f4f4;
+            --modal-overlay: rgba(0, 0, 0, 0.8);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -46,7 +47,6 @@
             opacity: 0.7;
         }
         nav ul li a:hover { opacity: 1; color: var(--accent-purple); }
-        nav ul li a.active { opacity: 1; }
 
         /* Main Content */
         main { margin-left: 260px; width: calc(100% - 260px); padding: 60px 8% 80px 8%; }
@@ -60,12 +60,11 @@
         .profile-img-box { position: relative; width: 280px; height: 280px; }
         .profile-img-box img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #eee; border: 8px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         
-        /* The Moving Text Bubble */
         .moving-bubble {
             position: absolute;
             bottom: 20px;
             left: -10px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
             color: white;
             padding: 10px 20px;
@@ -78,7 +77,7 @@
             animation: typing 4s steps(20, end) infinite, blink .75s step-end infinite;
         }
 
-        @keyframes typing { 0%, 90%, 100% { width: 0; } 30%, 60% { width: 150px; } }
+        @keyframes typing { 0%, 90%, 100% { width: 0; } 30%, 60% { width: 180px; } }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: white } }
 
         .section-label { color: var(--text-muted); font-size: 14px; font-weight: 600; letter-spacing: 1px; margin-bottom: 10px; display: block; }
@@ -88,33 +87,61 @@
         .tag-row { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
         .tag { border: 1px dashed #ccc; padding: 5px 15px; border-radius: 20px; font-size: 13px; color: var(--text-muted); }
 
-        /* Projects Section (Reference Style) */
+        /* Projects Section */
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 20px; }
-        .project-card { position: relative; border-radius: 15px; overflow: hidden; border: 1px solid #eee; background: #fff; transition: 0.3s; }
-        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .project-card { position: relative; border-radius: 15px; overflow: hidden; border: 1px solid #eee; background: #fff; transition: 0.3s; cursor: pointer; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-color: var(--accent-purple); }
         
         .project-info { padding: 25px; }
         .project-tag { 
             position: absolute; top: 20px; right: 20px; 
-            background: rgba(0,0,0,0.2); backdrop-filter: blur(5px); 
-            color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;
+            background: rgba(142, 68, 173, 0.1); color: var(--accent-purple); 
+            padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;
         }
         .project-title { font-size: 20px; font-weight: 700; margin-bottom: 15px; }
         .project-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
 
         /* Experience Section */
-        .exp-item { border-left: 2px solid #eee; padding-left: 30px; position: relative; margin-bottom: 40px; }
+        .exp-item { border-left: 2px solid #eee; padding-left: 30px; position: relative; margin-bottom: 50px; }
         .exp-item::after { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--accent-purple); border-radius: 50%; }
-        .exp-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
-        .company { font-weight: 700; color: var(--accent-purple); }
+        .exp-header { display: flex; justify-content: space-between; margin-bottom: 15px; }
+        .company { font-weight: 700; color: var(--accent-purple); font-size: 18px; }
+        .exp-list { color: var(--text-muted); font-size: 14px; line-height: 1.8; padding-left: 20px; }
+        .exp-list li { margin-bottom: 8px; }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: var(--modal-overlay);
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 700px;
+            width: 90%;
+            position: relative;
+            animation: modalFade 0.3s ease-out;
+        }
+        @keyframes modalFade { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .close-btn { position: absolute; top: 20px; right: 20px; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+        .modal-title { font-size: 28px; margin-bottom: 20px; color: var(--accent-purple); }
+        .modal-body { color: var(--text-muted); line-height: 1.8; }
 
         /* Certification Section */
         .cert-box { display: flex; align-items: center; gap: 30px; background: #fff; padding: 30px; border-radius: 15px; border: 1px dashed #ccc; }
-        .cert-icon { width: 60px; height: 60px; background: #f0f0f0; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+        .cert-icon { width: 60px; height: 60px; background: #f4f4f4; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
 
         /* Contact Section */
         .contact-grid { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
-        .contact-pill { border: 1px dashed #ccc; padding: 15px 30px; border-radius: 50px; font-size: 15px; color: var(--text-muted); text-decoration: none; transition: 0.3s; }
+        .contact-pill { border: 1px dashed #ccc; padding: 15px 30px; border-radius: 50px; font-size: 14px; color: var(--text-muted); text-decoration: none; transition: 0.3s; }
         .contact-pill:hover { background: var(--light-gray); border-color: var(--text-dark); color: var(--text-dark); }
 
         @media (max-width: 900px) {
@@ -130,9 +157,9 @@
     <aside>
         <nav>
             <ul>
-                <li><a href="#about" class="active">About Me</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#experience">Career Path</a></li>
+                <li><a href="#projects">Innovations</a></li>
                 <li><a href="#certificates">Certificates</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -145,7 +172,7 @@
         <section id="about" class="intro-container">
             <div class="profile-img-box">
                 <img src="https://raw.githubusercontent.com/Ajraja0205/Ajraja0205.github.io/main/image.jpg" alt="Ansh Jain">
-                <div class="moving-bubble" id="movingText">I'M ANSH_</div>
+                <div class="moving-bubble" id="movingText">HI, I'M ANSH_</div>
             </div>
             <div>
                 <span class="section-label">ABOUT ME</span>
@@ -163,7 +190,7 @@
         </section>
 
         <section id="experience" style="margin-bottom:100px;">
-            <span class="section-label">RESUME</span>
+            <span class="section-label">CAREER PATH</span>
             <h2 style="font-size:32px; margin-bottom:40px;">Work Experience</h2>
             
             <div class="exp-item">
@@ -174,10 +201,13 @@
                     </div>
                     <div style="color:var(--text-muted); font-size:14px;">Sept 2024 – Present</div>
                 </div>
-                <ul style="color:var(--text-muted); font-size:14px; line-height:2; padding-left:20px;">
-                    <li>Designed end-to-end Synthetic Monitoring solutions across production environments.</li>
-                    <li>Built AI-powered ticket triaging systems using OpenAI APIs to classify incidents.</li>
-                    <li>Implemented RAG pipelines using embeddings to enable contextual Q&A.</li>
+                <ul class="exp-list">
+                    <li>Designed and owned end-to-end Synthetic Monitoring solutions using Catchpoint across production environments, tracking latency, availability, and reliability KPIs.</li>
+                    <li>Built Python-based automation to analyze monitoring datasets, detect traffic spikes/drops, and identify performance anomalies.</li>
+                    <li>Built AI-powered ticket triaging systems using OpenAI APIs to classify incidents and suggest priority levels based on contextual understanding.</li>
+                    <li>Implemented prompt-engineered workflows to generate structured summaries from logs and monitoring metrics.</li>
+                    <li>Designed and implemented a Retrieval-Augmented Generation (RAG) pipeline using embeddings and vector similarity search for contextual Q&A.</li>
+                    <li>Evaluated LLM-generated summaries for relevance and grounding, comparing base model responses with retrieval-augmented outputs.</li>
                 </ul>
             </div>
 
@@ -189,42 +219,42 @@
                     </div>
                     <div style="color:var(--text-muted); font-size:14px;">June 2024 – Aug 2024</div>
                 </div>
-                <ul style="color:var(--text-muted); font-size:14px; line-height:2; padding-left:20px;">
-                    <li>Contributed to enterprise web application modules using modern web standards.</li>
-                    <li>Gained exposure to large-scale enterprise workflow automation.</li>
+                <ul class="exp-list">
+                    <li>Contributed to enterprise web application modules using modern web standards in an Agile development environment.</li>
+                    <li>Collaborated with senior engineers to refactor server-side code, ensuring alignment with enterprise-grade coding standards.</li>
                 </ul>
             </div>
         </section>
 
         <section id="projects" style="margin-bottom:100px;">
-            <span class="section-label">PORTFOLIO</span>
-            <h2 style="font-size:32px;">My Latest Works</h2>
+            <span class="section-label">INNOVATIONS</span>
+            <h2 style="font-size:32px;">Latest Works</h2>
             <p style="color:var(--text-muted); margin: 15px 0 40px 0; max-width:700px;">
-                Experience my diverse portfolio showcasing cutting-edge AI projects, blending innovation with meticulous backend functionality.
+                Click on a project card to view the full technical implementation and results.
             </p>
 
             <div class="grid-container">
-                <div class="project-card">
+                <div class="project-card" onclick="openModal('rag')">
                     <span class="project-tag">RAG | PYTHON</span>
                     <div class="project-info">
                         <h3 class="project-title">Monitoring Assistant</h3>
-                        <p class="project-desc">Engineered document chunking and embedding pipelines for monitoring logs using vector similarity search to reduce hallucinations.</p>
+                        <p class="project-desc">Engineered document chunking and embedding pipelines for monitoring logs using vector similarity search.</p>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" onclick="openModal('triage')">
                     <span class="project-tag">OPENAI API</span>
                     <div class="project-info">
                         <h3 class="project-title">AI Ticket Triaging</h3>
-                        <p class="project-desc">Developed an LLM-based classification system to prioritize incident tickets via structured JSON prompts and FastAPI.</p>
+                        <p class="project-desc">Developed an LLM-based classification system to prioritize incident tickets via structured JSON prompts.</p>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" onclick="openModal('anomaly')">
                     <span class="project-tag">SCIKIT-LEARN</span>
                     <div class="project-info">
                         <h3 class="project-title">Log Anomaly Detection</h3>
-                        <p class="project-desc">Applied Isolation Forest techniques to identify abnormal traffic patterns in application logs and deployed real-time alert endpoints.</p>
+                        <p class="project-desc">Applied Isolation Forest techniques to identify abnormal traffic patterns in application logs.</p>
                     </div>
                 </div>
             </div>
@@ -233,8 +263,6 @@
         <section id="certificates" style="margin-bottom:100px;">
             <span class="section-label">ACHIEVEMENT</span>
             <h2 style="font-size:32px; margin-bottom:15px;">Certificates</h2>
-            <p style="color:var(--text-muted); margin-bottom:40px;">My certificates reflect my commitment to continuous growth and mastery in AI development.</p>
-            
             <div class="cert-box">
                 <div class="cert-icon">🏆</div>
                 <div>
@@ -243,3 +271,69 @@
                 </div>
             </div>
         </section>
+
+        <section id="contact">
+            <span class="section-label">GET IN TOUCH</span>
+            <h2 style="font-size:32px; margin-bottom:15px;">Connect With Me</h2>
+            <div class="contact-grid">
+                <a href="mailto:anshjainraja@gmail.com" class="contact-pill">anshjainraja@gmail.com</a>
+                <a href="tel:+918209277624" class="contact-pill">(+91) 8209277624</a>
+                <a href="https://www.linkedin.com/in/ansh-jain1980/" target="_blank" class="contact-pill">LinkedIn Profile</a>
+                <span class="contact-pill">Baran, Rajasthan, India</span>
+            </div>
+        </section>
+
+        <footer style="margin-top:100px; padding-top:40px; border-top:1px solid #eee; color:var(--text-muted); font-size:13px;">
+            &copy; 2026 Ansh Jain | GenAI Developer Portfolio
+        </footer>
+    </main>
+
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle" class="modal-title"></h2>
+            <div id="modalBody" class="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        // Moving Text Logic
+        const texts = ["HI, I'M ANSH_", "GENAI DEV_", "BACKEND ENG_"];
+        let count = 0;
+        setInterval(() => {
+            count = (count + 1) % texts.length;
+            document.getElementById('movingText').innerText = texts[count];
+        }, 4000);
+
+        // Project Modal Data
+        const projectData = {
+            rag: {
+                title: "Context-Aware Monitoring Assistant (RAG)",
+                body: "<ul><li>Engineered document chunking and embedding generation pipelines for monitoring logs using OpenAI and Python.</li><li>Implemented top-k vector similarity search using cosine similarity to retrieve relevant context.</li><li>Injected retrieved context into structured prompts to reduce LLM hallucinations and improve response grounding.</li><li>Developed REST endpoints using FastAPI to serve the retrieval and generation pipeline.</li></ul>"
+            },
+            triage: {
+                title: "AI Ticket Triaging System",
+                body: "<ul><li>Developed an LLM-based classification system to categorize incident tickets using structured prompting.</li><li>Designed prompt templates to generate JSON outputs for priority and recommended actions.</li><li>Implemented validation logic to ensure consistent and structured model responses.</li><li>Exposed the classification pipeline via FastAPI for backend integration.</li></ul>"
+            },
+            anomaly: {
+                title: "Intelligent Log Anomaly Detection",
+                body: "<ul><li>Performed exploratory data analysis on application log metrics identifying abnormal traffic patterns using Scikit-learn and Pandas.</li><li>Applied Isolation Forest and statistical thresholding techniques to detect anomalies in time-series data.</li><li>Engineered features like rolling averages and deviation metrics to improve sensitivity.</li><li>Deployed real-time alert endpoints via FastAPI.</li></ul>"
+            }
+        };
+
+        function openModal(id) {
+            document.getElementById('modalTitle').innerText = projectData[id].title;
+            document.getElementById('modalBody').innerHTML = projectData[id].body;
+            document.getElementById('projectModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('projectModal')) closeModal();
+        }
+    </script>
+</body>
+</html>
