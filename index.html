@@ -22,6 +22,7 @@
             line-height: 1.6;
         }
 
+        /* Hero Section */
         header {
             padding: 80px 20px;
             text-align: center;
@@ -59,8 +60,10 @@
         .tagline { font-size: 1.2rem; color: var(--neon-blue); font-weight: 500; margin-bottom: 20px; }
 
         .contact-info { color: var(--text-dim); font-size: 0.9rem; }
-        .contact-info a { color: var(--neon-blue); text-decoration: none; margin: 0 10px; }
+        .contact-info a { color: var(--neon-blue); text-decoration: none; margin: 0 10px; border-bottom: 1px solid transparent; transition: 0.3s; }
+        .contact-info a:hover { border-bottom: 1px solid var(--neon-blue); }
 
+        /* Content Sections */
         .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
 
         section { margin-bottom: 60px; }
@@ -75,6 +78,7 @@
 
         h2::after { content: ""; height: 1px; flex-grow: 1; background: #334155; }
 
+        /* Experience & Projects Cards */
         .card {
             background: var(--card-bg);
             border: 1px solid #334155;
@@ -94,6 +98,7 @@
         li { margin-bottom: 10px; position: relative; padding-left: 20px; color: var(--text-dim); }
         li::before { content: "▹"; position: absolute; left: 0; color: var(--neon-blue); }
 
+        /* Skills */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         .skill-group { background: #0f172a; padding: 20px; border-radius: 8px; border: 1px solid #1e293b; }
         .skill-group h3 { font-size: 1rem; color: var(--neon-blue); margin-bottom: 10px; }
@@ -121,8 +126,8 @@
     <section>
         <h2>About Me</h2>
         <p style="color: var(--text-dim);">
-            GenAI-focused Software Engineer with 1.5 years of experience building automation and AI-powered systems in production environments[cite: 39]. 
-            Expert in integrating OpenAI APIs and developing <strong>Retrieval-Augmented Generation (RAG)</strong> pipelines using embeddings and vector similarity search[cite: 40].
+            GenAI-focused Software Engineer with 1.5 years of experience building automation and AI-powered systems in production environments. 
+            Expert in integrating OpenAI APIs and developing <strong>Retrieval-Augmented Generation (RAG)</strong> pipelines using embeddings and vector similarity search.
         </p>
     </section>
 
@@ -131,19 +136,19 @@
         <div class="skills-grid">
             <div class="skill-group">
                 <h3>GenAI & ML</h3>
-                <div class="skill-list">OpenAI APIs, RAG, Prompt Engineering, Vector Search, Scikit-learn[cite: 74].</div>
+                <div class="skill-list">OpenAI APIs, RAG, Prompt Engineering, Vector Search (Cosine Similarity), Scikit-learn.</div>
             </div>
             <div class="skill-group">
                 <h3>Backend</h3>
-                <div class="skill-list">Python (Primary), FastAPI, REST APIs, Core Java, Spring Boot[cite: 75, 76, 77].</div>
+                <div class="skill-list">Python (Primary), FastAPI, REST APIs, Core Java, Spring Boot.</div>
             </div>
             <div class="skill-group">
                 <h3>Observability</h3>
-                <div class="skill-list">Catchpoint, Grafana, Kibana, New Relic[cite: 79].</div>
+                <div class="skill-list">Catchpoint, Grafana, Kibana, New Relic.</div>
             </div>
             <div class="skill-group">
                 <h3>Automation</h3>
-                <div class="skill-list">Selenium, Playwright[cite: 78].</div>
+                <div class="skill-list">Selenium, Playwright.</div>
             </div>
         </div>
     </section>
@@ -159,10 +164,10 @@
                 <div class="meta">Sept 2024 – Present</div>
             </div>
             <ul>
-                <li>Designed end-to-end Synthetic Monitoring solutions across production environments[cite: 45].</li>
-                <li>Built AI-powered ticket triaging systems using OpenAI APIs to classify incidents[cite: 47].</li>
-                <li>Implemented RAG pipelines using embeddings for contextual Q&A over monitoring datasets[cite: 49].</li>
-                <li>Developed Python automation to detect traffic anomalies in high-volume environments[cite: 46].</li>
+                <li>Designed end-to-end Synthetic Monitoring solutions across production environments to track latency and reliability.</li>
+                <li>Built AI-powered ticket triaging systems using OpenAI APIs to classify incidents and suggest priority levels.</li>
+                <li>Implemented RAG pipelines using embeddings to enable contextual Q&A over monitoring datasets.</li>
+                <li>Developed Python automation to detect traffic spikes and performance anomalies in high-volume environments.</li>
             </ul>
         </div>
 
@@ -175,8 +180,8 @@
                 <div class="meta">June 2024 – Aug 2024</div>
             </div>
             <ul>
-                <li>Contributed to enterprise web application modules using HTML, CSS, and JavaScript[cite: 54].</li>
-                <li>Gained exposure to large-scale system integration and workflow automation[cite: 55].</li>
+                <li>Contributed to enterprise web application modules using modern web standards.</li>
+                <li>Collaborated with senior engineers to refactor server-side code for system scalability.</li>
             </ul>
         </div>
     </section>
@@ -186,27 +191,27 @@
         <div class="card">
             <div class="title">Context-Aware Monitoring Assistant (RAG)</div>
             <p class="meta">Nov 2025</p>
-            <p style="margin: 10px 0; color: var(--text-dim);">Engineered document chunking and embedding generation for monitoring logs using vector search[cite: 57, 58].</p>
+            <p style="margin: 10px 0; color: var(--text-dim);">Engineered document chunking and embedding generation for monitoring logs. Used top-k vector similarity search to retrieve relevant context and reduce LLM hallucinations.</p>
         </div>
 
         <div class="card">
             <div class="title">AI Ticket Triaging System</div>
             <p class="meta">Aug 2025</p>
-            <p style="margin: 10px 0; color: var(--text-dim);">Developed an LLM-based system to prioritize incident tickets via structured prompting[cite: 64, 65].</p>
+            <p style="margin: 10px 0; color: var(--text-dim);">Developed an LLM-based system to prioritize incident tickets via structured prompting and JSON output validation.</p>
         </div>
 
         <div class="card">
             <div class="title">Intelligent Log Anomaly Detection</div>
             <p class="meta">Mar 2025</p>
-            <p style="margin: 10px 0; color: var(--text-dim);">Applied Isolation Forest techniques to detect abnormal traffic patterns via FastAPI[cite: 70, 72].</p>
+            <p style="margin: 10px 0; color: var(--text-dim);">Applied Isolation Forest techniques to detect abnormal traffic patterns and deployed real-time alert endpoints via FastAPI.</p>
         </div>
     </section>
 
     <section>
-        <h2>Education & Certs</h2>
+        <h2>Education & Certifications</h2>
         <p style="color: var(--text-dim);">
-            <strong>Chandigarh University</strong> | B.E. in Computer Science | CGPA: 8.25 [cite: 81, 87]<br>
-            <strong>Microsoft Certified:</strong> GitHub Copilot (Dec 2025) [cite: 84]
+            <strong>Chandigarh University</strong> | B.E. in Computer Science | CGPA: 8.25<br><br>
+            <strong>Microsoft Certified:</strong> GitHub Copilot (Dec 2025)
         </p>
     </section>
 </div>
