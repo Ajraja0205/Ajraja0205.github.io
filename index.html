@@ -5,33 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ansh Jain | Java Backend Engineer</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: auto; padding: 20px; }
-        h1, h2 { color: #2c3e50; }
-        .project { border-left: 4px solid #3498db; padding-left: 15px; margin-bottom: 20px; }
-        .skills { font-weight: bold; color: #e67e22; }
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --text: #333;
+            --light: #f4f7f6;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text); margin: 0; background: var(--light); }
+        header { background: var(--primary); color: white; padding: 60px 20px; text-align: center; }
+        header h1 { margin: 0; font-size: 2.5em; letter-spacing: 2px; }
+        header p { font-size: 1.2em; opacity: 0.9; }
+        .container { max-width: 900px; margin: 20px auto; padding: 20px; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 8px; }
+        h2 { border-bottom: 2px solid var(--accent); padding-bottom: 10px; color: var(--primary); }
+        .job, .project { margin-bottom: 30px; }
+        .job-title { font-weight: bold; font-size: 1.2em; color: var(--accent); }
+        .company { font-style: italic; color: #666; }
+        .date { float: right; color: #888; font-size: 0.9em; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; background: #e8eff5; padding: 20px; border-radius: 8px; }
+        .skill-cat { font-weight: bold; color: var(--primary); display: block; margin-bottom: 5px; }
+        footer { text-align: center; padding: 40px; color: #888; font-size: 0.9em; }
+        @media (max-width: 600px) { .date { float: none; display: block; margin-bottom: 10px; } }
     </style>
 </head>
 <body>
-    <h1>Ansh Jain</h1>
-    <p><strong>Backend Software Engineer | Java & Enterprise Systems</strong></p>
-    <p>1.5 years of experience architecting high-availability services and RESTful APIs for large-scale infrastructure at Verizon.</p>
+
+<header>
+    <h1>ANSH JAIN</h1>
+    <p>Backend Software Engineer | Java & Enterprise Infrastructure</p>
+    <p>Baran, Rajasthan | (+91) 8209277624 | anshjainraja@gmail.com</p>
+</header>
+
+<div class="container">
+    <h2>Professional Summary</h2>
+    <p>
+        <strong>Backend Software Engineer</strong> with 1.5 years of experience specializing in the design and implementation of high-availability enterprise services[cite: 58]. 
+        Expert in <strong>Core Java and Object-Oriented Programming (OOP)</strong>, with a proven track record of architecting server-side logic and RESTful APIs for large-scale telecommunications infrastructure at <strong>Verizon</strong>[cite: 59]. 
+        Proficient in developing complex data pipelines, optimizing backend performance, and ensuring data consistency through rigorous JSON validation[cite: 60].
+    </p>
+
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+        <div>
+            <span class="skill-cat">Languages</span>
+            Java (Core, OOP, Collections), SQL, Python[cite: 78].
+        </div>
+        <div>
+            <span class="skill-cat">Backend & APIs</span>
+            Spring Boot, RESTful API Development, Microservices, JSON Schema Validation[cite: 79].
+        </div>
+        <div>
+            <span class="skill-cat">Monitoring</span>
+            Catchpoint, Grafana, Kibana, New Relic[cite: 81].
+        </div>
+        <div>
+            <span class="skill-cat">Automation</span>
+            Selenium, Playwright[cite: 80].
+        </div>
+    </div>
 
     <h2>Professional Experience</h2>
-    <div>
-        <h3>Creospan Pvt Ltd (Client: Verizon)</h3>
+    
+    <div class="job">
+        <span class="date">Sept 2024 – Present</span>
+        <div class="job-title">Software Engineer</div>
+        <div class="company">Creospan Pvt Ltd (Client: Verizon Communications, US)</div>
         <ul>
-            <li>Architected enterprise monitoring microservices to track latency and availability KPIs for high-volume environments.</li>
-            <li>Engineered high-throughput data pipelines in Java to ingest and analyze massive monitoring datasets.</li>
+            <li><strong>Architected Enterprise Monitoring Microservices:</strong> Designed end-to-end synthetic monitoring solutions to track production-level latency and availability KPIs for high-volume environments[cite: 65].</li>
+            <li><strong>Engineered High-Throughput Data Pipelines:</strong> Developed backend processing logic to ingest and analyze massive monitoring datasets, implementing statistical algorithms to detect performance anomalies[cite: 66].</li>
+            <li><strong>Server-Side Orchestration:</strong> Developed the backend architecture for an incident triaging system using <strong>Java and REST APIs</strong> to automate classification and priority routing[cite: 67].</li>
+            <li><strong>Robust API Validation:</strong> Designed and maintained REST endpoints using structured JSON handling and validation logic to ensure data integrity[cite: 70].</li>
         </ul>
     </div>
 
-    <h2>Backend Projects</h2>
-    <div class="project">
-        <h3>Distributed Monitoring & Contextual Retrieval Service</h3>
-        <p>Architected a high-performance retrieval service utilizing Java and REST APIs to perform real-time analysis over domain-specific datasets.</p>
+    <div class="job">
+        <span class="date">June 2024 – Aug 2024</span>
+        <div class="job-title">Java Backend Intern</div>
+        <div class="company">Cognizant</div>
+        <ul>
+            <li><strong>Enterprise Web Modules:</strong> Contributed to the development of backend modules for large-scale applications using <strong>Core Java</strong> and modern web standards[cite: 75].</li>
+            <li><strong>Performance Quality Assurance:</strong> Collaborated with senior engineers to refactor server-side code, ensuring alignment with enterprise-grade coding standards[cite: 76].</li>
+        </ul>
     </div>
 
-    <h2>Technical Skills</h2>
-    <p class="skills">Java (Core, OOP, Collections), SQL, Spring Boot, RESTful APIs, Microservices, JSON Validation.</p>
+    <h2>Engineering Projects</h2>
+    
+    <div class="project">
+        <div class="job-title">Distributed Monitoring & Contextual Retrieval Service</div>
+        <p>Architected a high-performance retrieval pipeline to perform real-time contextual analysis over domain-specific monitoring datasets[cite: 58, 69]. Developed scalable REST endpoints to serve complex retrieval logic for integration with internal enterprise tools[cite: 70].</p>
+    </div>
+
+    <div class="project">
+        <div class="job-title">Enterprise Log Anomaly Detection System</div>
+        <p>Developed a backend monitoring engine to identify abnormal patterns in high-volume application metrics and response times[cite: 66, 71]. Exposed real-time alerting interfaces via RESTful APIs for seamless integration with observability dashboards[cite: 70, 81].</p>
+    </div>
+
+    <h2>Education</h2>
+    <p><strong>Chandigarh University</strong> | Bachelor in Computer Science and Engineering [cite: 83, 84]<br>
+    Graduated June 2023 | CGPA: 8.25 [cite: 87]</p>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 Ansh Jain. Built for Performance & Scalability.</p>
+</footer>
+
 </body>
 </html>
