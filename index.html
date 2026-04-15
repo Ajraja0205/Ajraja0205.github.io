@@ -5,66 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ansh Jain | GenAI Developer</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --sidebar-bg: #000000;
+            --sidebar-width: 80px;
             --main-bg: #ffffff;
             --accent-purple: #8e44ad;
             --text-dark: #000000;
             --text-muted: #666666;
-            --light-gray: #f4f4f4;
-            --modal-overlay: rgba(0, 0, 0, 0.8);
+            --border-color: #eeeeee;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--main-bg); display: flex; color: var(--text-dark); overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--main-bg); color: var(--text-dark); overflow-x: hidden; }
 
-        /* Sidebar Navigation */
+        /* Top Right Features */
+        .top-features {
+            position: fixed;
+            top: 30px;
+            right: 50px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            z-index: 2000;
+        }
+        .social-links { display: flex; gap: 20px; }
+        .social-links a { color: var(--text-dark); font-size: 18px; transition: 0.3s; text-decoration: none; }
+        .social-links a:hover { color: var(--accent-purple); transform: translateY(-3px); }
+        .contact-btn {
+            padding: 10px 25px;
+            border: 1px solid var(--text-dark);
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .contact-btn:hover { background: var(--text-dark); color: #fff; }
+
+        /* Sleek Left Sidebar */
         aside {
-            width: 260px;
-            background-color: var(--sidebar-bg);
+            width: var(--sidebar-width);
             height: 100vh;
             position: fixed;
-            padding: 60px 30px;
+            left: 0;
+            top: 0;
             display: flex;
             flex-direction: column;
+            align-items: center;
             justify-content: center;
+            border-right: 1px solid var(--border-color);
             z-index: 1000;
+            background: #fff;
+        }
+        
+        /* The Moving Vertical Line */
+        .scroll-line-bg {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background: var(--border-color);
+        }
+        .scroll-progress-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 0%;
+            background: var(--accent-purple);
+            transform: translateX(-50%);
+            transition: height 0.1s linear;
         }
 
-        nav ul { list-style: none; }
-        nav ul li { margin-bottom: 25px; }
+        nav ul { list-style: none; transform: rotate(-90deg); display: flex; gap: 40px; white-space: nowrap; }
         nav ul li a {
-            color: #ffffff;
+            color: #bbb;
             text-decoration: none;
             text-transform: uppercase;
             font-weight: 600;
-            font-size: 13px;
-            letter-spacing: 1.5px;
+            font-size: 11px;
+            letter-spacing: 2px;
             transition: 0.3s;
-            display: flex;
-            align-items: center;
-            opacity: 0.7;
+            padding-bottom: 5px;
         }
-        nav ul li a:hover { opacity: 1; color: var(--accent-purple); }
+        nav ul li a.active { color: var(--text-dark); border-bottom: 2px solid var(--accent-purple); }
 
         /* Main Content */
-        main { margin-left: 260px; width: calc(100% - 260px); padding: 60px 8% 80px 8%; }
+        main { margin-left: var(--sidebar-width); padding: 80px 10% 100px 10%; }
 
-        /* Header Style */
         .name-header { font-size: 80px; font-weight: 700; margin-bottom: 40px; text-transform: capitalize; }
         .name-header span { color: transparent; -webkit-text-stroke: 1px var(--text-dark); }
 
-        /* About Section & Moving Text */
-        .intro-container { display: flex; align-items: center; gap: 40px; margin-bottom: 100px; }
+        /* About Section */
+        .intro-container { display: flex; align-items: center; gap: 50px; margin-bottom: 120px; }
         .profile-img-box { position: relative; width: 280px; height: 280px; }
-        .profile-img-box img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #eee; border: 8px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .profile-img-box img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 8px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         
         .moving-bubble {
             position: absolute;
             bottom: 20px;
             left: -10px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             color: white;
             padding: 10px 20px;
@@ -73,12 +118,10 @@
             font-family: monospace;
             white-space: nowrap;
             overflow: hidden;
-            border-right: 3px solid #fff;
-            animation: typing 4s steps(20, end) infinite, blink .75s step-end infinite;
+            animation: typing 4s steps(20, end) infinite;
         }
 
         @keyframes typing { 0%, 90%, 100% { width: 0; } 30%, 60% { width: 180px; } }
-        @keyframes blink { from, to { border-color: transparent } 50% { border-color: white } }
 
         .section-label { color: var(--text-muted); font-size: 14px; font-weight: 600; letter-spacing: 1px; margin-bottom: 10px; display: block; }
         .section-label::before { content: "// "; }
@@ -87,21 +130,7 @@
         .tag-row { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
         .tag { border: 1px dashed #ccc; padding: 5px 15px; border-radius: 20px; font-size: 13px; color: var(--text-muted); }
 
-        /* Projects Section */
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 20px; }
-        .project-card { position: relative; border-radius: 15px; overflow: hidden; border: 1px solid #eee; background: #fff; transition: 0.3s; cursor: pointer; }
-        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-color: var(--accent-purple); }
-        
-        .project-info { padding: 25px; }
-        .project-tag { 
-            position: absolute; top: 20px; right: 20px; 
-            background: rgba(142, 68, 173, 0.1); color: var(--accent-purple); 
-            padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;
-        }
-        .project-title { font-size: 20px; font-weight: 700; margin-bottom: 15px; }
-        .project-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
-
-        /* Experience Section */
+        /* Full Details Experience */
         .exp-item { border-left: 2px solid #eee; padding-left: 30px; position: relative; margin-bottom: 50px; }
         .exp-item::after { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--accent-purple); border-radius: 50%; }
         .exp-header { display: flex; justify-content: space-between; margin-bottom: 15px; }
@@ -109,59 +138,50 @@
         .exp-list { color: var(--text-muted); font-size: 14px; line-height: 1.8; padding-left: 20px; }
         .exp-list li { margin-bottom: 8px; }
 
-        /* Modal Styles */
+        /* Projects */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 20px; }
+        .project-card { position: relative; border-radius: 15px; overflow: hidden; border: 1px solid #eee; background: #fff; transition: 0.3s; cursor: pointer; padding: 25px; }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--accent-purple); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .project-tag { position: absolute; top: 20px; right: 20px; background: rgba(142, 68, 173, 0.1); color: var(--accent-purple); padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+        .project-title { font-size: 20px; font-weight: 700; margin-bottom: 15px; }
+
+        /* Modal */
         .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background-color: var(--modal-overlay);
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
+            display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); justify-content: center; align-items: center;
         }
-        .modal-content {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 700px;
-            width: 90%;
-            position: relative;
-            animation: modalFade 0.3s ease-out;
-        }
-        @keyframes modalFade { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        .close-btn { position: absolute; top: 20px; right: 20px; font-size: 24px; cursor: pointer; color: var(--text-muted); }
-        .modal-title { font-size: 28px; margin-bottom: 20px; color: var(--accent-purple); }
-        .modal-body { color: var(--text-muted); line-height: 1.8; }
-
-        /* Certification Section */
-        .cert-box { display: flex; align-items: center; gap: 30px; background: #fff; padding: 30px; border-radius: 15px; border: 1px dashed #ccc; }
-        .cert-icon { width: 60px; height: 60px; background: #f4f4f4; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-
-        /* Contact Section */
-        .contact-grid { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
-        .contact-pill { border: 1px dashed #ccc; padding: 15px 30px; border-radius: 50px; font-size: 14px; color: var(--text-muted); text-decoration: none; transition: 0.3s; }
-        .contact-pill:hover { background: var(--light-gray); border-color: var(--text-dark); color: var(--text-dark); }
+        .modal-content { background: #fff; padding: 40px; border-radius: 20px; max-width: 700px; width: 90%; position: relative; }
+        .close-btn { position: absolute; top: 20px; right: 20px; font-size: 24px; cursor: pointer; }
 
         @media (max-width: 900px) {
-            aside { width: 0; display: none; }
-            main { margin-left: 0; width: 100%; padding: 40px 5%; }
+            aside { display: none; }
+            main { margin-left: 0; padding: 40px 5%; }
             .name-header { font-size: 50px; }
             .intro-container { flex-direction: column; text-align: center; }
+            .top-features { right: 20px; top: 20px; }
         }
     </style>
 </head>
 <body>
 
+    <div class="top-features">
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/ansh-jain1980/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="mailto:anshjainraja@gmail.com"><i class="far fa-envelope"></i></a>
+        </div>
+        <div class="contact-btn" onclick="location.href='#contact'">Get in touch</div>
+    </div>
+
     <aside>
+        <div class="scroll-line-bg"></div>
+        <div class="scroll-progress-line" id="progressBar"></div>
         <nav>
             <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#experience">Journey</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#certificates">Certificates</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about" class="nav-link">About Me</a></li>
+                <li><a href="#experience" class="nav-link">Journey</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
     </aside>
@@ -172,7 +192,7 @@
         <section id="about" class="intro-container">
             <div class="profile-img-box">
                 <img src="https://raw.githubusercontent.com/Ajraja0205/Ajraja0205.github.io/main/image.jpg" alt="Ansh Jain">
-                <div class="moving-bubble" id="movingText">HI, I'M ANSH JAIN</div>
+                <div class="moving-bubble" id="movingText">HI, I'M ANSH</div>
             </div>
             <div>
                 <span class="section-label">ABOUT ME</span>
@@ -228,84 +248,79 @@
 
         <section id="projects" style="margin-bottom:100px;">
             <span class="section-label">SHOWCASE</span>
-            <h2 style="font-size:32px;">Latest Works</h2>
-            <p style="color:var(--text-muted); margin: 15px 0 40px 0; max-width:700px;">
-                Click on a project card to view the full technical implementation and results.
-            </p>
-
+            <h2 style="font-size:32px; margin-bottom:40px;">Latest Works</h2>
             <div class="grid-container">
                 <div class="project-card" onclick="openModal('rag')">
                     <span class="project-tag">RAG | PYTHON</span>
-                    <div class="project-info">
-                        <h3 class="project-title">Monitoring Assistant</h3>
-                        <p class="project-desc">Engineered document chunking and embedding pipelines for monitoring logs using vector similarity search.</p>
-                    </div>
+                    <h3 class="project-title">Monitoring Assistant</h3>
+                    <p style="color:var(--text-muted); font-size:14px;">Engineered document chunking and embedding pipelines for monitoring logs using vector similarity search.</p>
                 </div>
 
                 <div class="project-card" onclick="openModal('triage')">
                     <span class="project-tag">OPENAI API</span>
-                    <div class="project-info">
-                        <h3 class="project-title">AI Ticket Triaging</h3>
-                        <p class="project-desc">Developed an LLM-based classification system to prioritize incident tickets via structured JSON prompts.</p>
-                    </div>
+                    <h3 class="project-title">AI Ticket Triaging</h3>
+                    <p style="color:var(--text-muted); font-size:14px;">Developed an LLM-based classification system to prioritize incident tickets via structured JSON prompts.</p>
                 </div>
 
                 <div class="project-card" onclick="openModal('anomaly')">
                     <span class="project-tag">SCIKIT-LEARN</span>
-                    <div class="project-info">
-                        <h3 class="project-title">Log Anomaly Detection</h3>
-                        <p class="project-desc">Applied Isolation Forest techniques to identify abnormal traffic patterns in application logs.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="certificates" style="margin-bottom:100px;">
-            <span class="section-label">ACHIEVEMENT</span>
-            <h2 style="font-size:32px; margin-bottom:15px;">Certificates</h2>
-            <div class="cert-box">
-                <div class="cert-icon">🏆</div>
-                <div>
-                    <div style="color:var(--text-muted); font-size:13px;">Dec 20, 2025</div>
-                    <h3 style="font-size:18px;">GitHub Copilot Certification | Microsoft</h3>
+                    <h3 class="project-title">Log Anomaly Detection</h3>
+                    <p style="color:var(--text-muted); font-size:14px;">Applied Isolation Forest techniques to identify abnormal traffic patterns in application logs.</p>
                 </div>
             </div>
         </section>
 
         <section id="contact">
             <span class="section-label">GET IN TOUCH</span>
-            <h2 style="font-size:32px; margin-bottom:15px;">Connect With Me</h2>
-            <div class="contact-grid">
-                <a href="mailto:anshjainraja@gmail.com" class="contact-pill">anshjainraja@gmail.com</a>
-                <a href="tel:+918209277624" class="contact-pill">(+91) 8209277624</a>
-                <a href="https://www.linkedin.com/in/ansh-jain1980/" target="_blank" class="contact-pill">LinkedIn Profile</a>
-                <span class="contact-pill">Baran, Rajasthan, India</span>
+            <h2 style="font-size:32px; margin-bottom:30px;">Connect With Me</h2>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <a href="mailto:anshjainraja@gmail.com" style="color:black; text-decoration:none; border-bottom: 2px solid var(--accent-purple); font-weight:700;">anshjainraja@gmail.com</a>
+                <a href="tel:+918209277624" style="color:black; text-decoration:none; border-bottom: 2px solid var(--accent-purple); font-weight:700;">(+91) 8209277624</a>
             </div>
         </section>
-
-        <footer style="margin-top:100px; padding-top:40px; border-top:1px solid #eee; color:var(--text-muted); font-size:13px;">
-            &copy; 2026 Ansh Jain | GenAI Developer Portfolio
-        </footer>
     </main>
 
     <div id="projectModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle" class="modal-title"></h2>
-            <div id="modalBody" class="modal-body"></div>
+            <h2 id="modalTitle" style="color:var(--accent-purple); margin-bottom:20px;"></h2>
+            <div id="modalBody" style="color:var(--text-muted); line-height:1.8;"></div>
         </div>
     </div>
 
     <script>
-        // Moving Text Logic
-        const texts = ["HI, I'M ANSH_", "GENAI DEV_", "BACKEND ENG_"];
+        // Scroll Progress Line
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.height = scrolled + "%";
+        };
+
+        // Section Highlighting
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-link");
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) { current = section.getAttribute("id"); }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").includes(current)) { link.classList.add("active"); }
+            });
+        });
+
+        // Moving Text (No Underscore)
+        const texts = ["HI, I'M ANSH", "GENAI DEVELOPER", "BACKEND ENGINEER"];
         let count = 0;
         setInterval(() => {
             count = (count + 1) % texts.length;
             document.getElementById('movingText').innerText = texts[count];
         }, 4000);
 
-        // Project Modal Data
+        // Project Data Restored
         const projectData = {
             rag: {
                 title: "Context-Aware Monitoring Assistant (RAG)",
@@ -326,14 +341,7 @@
             document.getElementById('modalBody').innerHTML = projectData[id].body;
             document.getElementById('projectModal').style.display = 'flex';
         }
-
-        function closeModal() {
-            document.getElementById('projectModal').style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('projectModal')) closeModal();
-        }
+        function closeModal() { document.getElementById('projectModal').style.display = 'none'; }
     </script>
 </body>
 </html>
