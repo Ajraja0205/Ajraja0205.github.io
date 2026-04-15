@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --sidebar-width: 160px;
+            --sidebar-width: 100px;
             --main-bg: #ffffff;
             --accent-purple: #8e44ad;
-            --text-dark: #000000;
-            --text-muted: #666666;
+            --text-dark: #111111;
+            --text-muted: #888888;
             --border-color: #eeeeee;
         }
 
@@ -36,7 +36,7 @@
             padding: 10px 25px;
             border: 1px solid var(--text-dark);
             border-radius: 30px;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -45,7 +45,7 @@
         }
         .contact-btn:hover { background: var(--text-dark); color: #fff; }
 
-        /* Left Sidebar with Right-Side Line */
+        /* Left Minimal Sidebar & Animated Line */
         aside {
             width: var(--sidebar-width);
             height: 100vh;
@@ -61,90 +61,99 @@
             background: #fff;
         }
         
-        .scroll-progress-line {
+        /* The Moving Vertical Line */
+        .scroll-line {
             position: absolute;
-            right: -1.5px; /* Aligned to the right of the left panel */
+            left: 50%;
             top: 0;
-            width: 3px;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--border-color), transparent);
+        }
+        .scroll-progress {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
             height: 0%;
             background: var(--accent-purple);
+            transform: translateX(-50%);
             transition: height 0.1s linear;
         }
 
-        /* Horizontal Text in Nav */
-        nav ul { list-style: none; display: flex; flex-direction: column; gap: 35px; }
+        nav ul { list-style: none; transform: rotate(-90deg); display: flex; gap: 40px; white-space: nowrap; }
         nav ul li a {
-            color: #bbb;
+            color: var(--text-muted);
             text-decoration: none;
             text-transform: uppercase;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 11px;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             transition: 0.3s;
-            display: block;
-            text-align: center;
         }
-        nav ul li a.active { color: var(--text-dark); border-right: 3px solid var(--accent-purple); padding-right: 5px; }
+        nav ul li a.active { color: var(--accent-purple); border-bottom: 2px solid var(--accent-purple); padding-bottom: 5px; }
 
         /* Main Content */
-        main { margin-left: var(--sidebar-width); padding: 80px 10% 100px 10%; }
+        main { margin-left: var(--sidebar-width); padding: 100px 10%; }
 
-        .name-header { font-size: clamp(40px, 8vw, 80px); font-weight: 700; margin-bottom: 40px; text-transform: uppercase; }
+        .name-header { font-size: 100px; font-weight: 700; margin-bottom: 40px; line-height: 0.9; }
         .name-header span { color: transparent; -webkit-text-stroke: 1px var(--text-dark); }
 
-        /* Hero Section */
-        .intro-container { display: flex; align-items: center; gap: 60px; margin-bottom: 120px; flex-wrap: wrap; }
-        .profile-img-box { position: relative; width: 280px; height: 280px; flex-shrink: 0; }
-        .profile-img-box img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 8px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        /* About Section */
+        .intro-container { display: flex; align-items: center; gap: 60px; margin-bottom: 150px; }
+        .profile-img-box { position: relative; width: 320px; height: 320px; }
+        .profile-img-box img { width: 100%; height: 100%; border-radius: 20px; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
+        .profile-img-box:hover img { filter: grayscale(0%); }
         
         .moving-bubble {
             position: absolute;
-            bottom: 20px;
-            left: -10px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
+            bottom: -20px;
+            right: -20px;
+            background: var(--text-dark);
             color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
+            padding: 15px 25px;
             font-size: 14px;
             font-family: monospace;
-            white-space: nowrap;
+            border-radius: 4px;
         }
 
-        .section-label { color: var(--text-muted); font-size: 14px; font-weight: 600; letter-spacing: 1px; margin-bottom: 15px; display: block; }
-        .section-label::before { content: "// "; color: var(--accent-purple); }
+        .section-label { color: var(--accent-purple); font-size: 12px; font-weight: 700; letter-spacing: 3px; margin-bottom: 20px; display: block; }
 
-        .role-display { font-size: clamp(24px, 4vw, 42px); font-weight: 700; margin-bottom: 20px; }
-        .tag-row { display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
-        .tag { border: 1px dashed #ccc; padding: 5px 15px; border-radius: 20px; font-size: 13px; color: var(--text-muted); }
-
-        /* Experience (Full Descriptions) */
-        .exp-item { border-left: 2px solid #eee; padding-left: 30px; position: relative; margin-bottom: 60px; }
-        .exp-item::after { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--accent-purple); border-radius: 50%; }
-        .company { font-weight: 700; color: var(--accent-purple); font-size: 19px; }
-        .exp-list { color: var(--text-muted); font-size: 14.5px; line-height: 1.8; padding-left: 20px; margin-top: 10px; }
-        .exp-list li { margin-bottom: 10px; }
+        /* Work Experience */
+        .exp-item { margin-bottom: 60px; position: relative; padding-left: 40px; }
+        .exp-item::before { content: ''; position: absolute; left: 0; top: 10px; width: 12px; height: 12px; border: 2px solid var(--accent-purple); border-radius: 50%; background: #fff; }
+        .company { font-size: 20px; font-weight: 700; margin-bottom: 5px; }
+        .job-title { color: var(--accent-purple); font-weight: 600; margin-bottom: 15px; display: block; }
+        .exp-list { list-style: none; color: var(--text-muted); font-size: 15px; line-height: 1.8; }
+        .exp-list li { margin-bottom: 10px; position: relative; }
 
         /* Projects */
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        .project-card { position: relative; border-radius: 15px; overflow: hidden; border: 1px solid #eee; background: #fff; transition: 0.3s; cursor: pointer; padding: 30px; }
-        .project-card:hover { transform: translateY(-5px); border-color: var(--accent-purple); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .project-tag { position: absolute; top: 20px; right: 20px; font-size: 11px; font-weight: 700; color: var(--accent-purple); }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .project-card { 
+            padding: 40px; 
+            border: 1px solid var(--border-color); 
+            transition: 0.4s; 
+            cursor: pointer;
+            position: relative;
+        }
+        .project-card:hover { border-color: var(--accent-purple); transform: translateY(-10px); }
+        .project-card h3 { font-size: 22px; margin-bottom: 15px; }
+        .project-card p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+        .project-num { position: absolute; top: 20px; right: 20px; font-weight: 700; color: #f0f0f0; font-size: 40px; z-index: -1; }
 
         /* Modal */
         .modal {
             display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px); justify-content: center; align-items: center;
+            background: rgba(255,255,255,0.98); justify-content: center; align-items: center;
         }
-        .modal-content { background: #fff; padding: 50px; border-radius: 15px; max-width: 800px; width: 90%; position: relative; }
-        .close-btn { position: absolute; top: 20px; right: 20px; font-size: 30px; cursor: pointer; }
+        .modal-content { max-width: 800px; width: 90%; padding: 40px; }
+        .close-btn { position: absolute; top: 40px; right: 40px; font-size: 30px; cursor: pointer; }
 
         @media (max-width: 900px) {
             aside { display: none; }
-            main { margin-left: 0; padding: 40px 5%; }
-            .name-header { font-size: 50px; }
-            .intro-container { flex-direction: column; text-align: center; justify-content: center; }
-            .tag-row { justify-content: center; }
+            main { margin-left: 0; }
+            .name-header { font-size: 60px; }
+            .top-features { right: 20px; }
         }
     </style>
 </head>
@@ -153,105 +162,92 @@
     <div class="top-features">
         <div class="social-links">
             <a href="https://www.linkedin.com/in/ansh-jain1980/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://github.com/Ajraja0205" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
             <a href="mailto:anshjainraja@gmail.com"><i class="far fa-envelope"></i></a>
         </div>
-        <div class="contact-btn" onclick="location.href='#contact'">Hire Me</div>
+        <div class="contact-btn" onclick="location.href='#contact'">Get in touch</div>
     </div>
 
     <aside>
-        <div class="scroll-progress-line" id="progressBar"></div>
+        <div class="scroll-line"></div>
+        <div class="scroll-progress" id="progressBar"></div>
         <nav>
             <ul>
-                <li><a href="#about" class="nav-link">About Me</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#experience" class="nav-link">Journey</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#projects" class="nav-link">Works</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
     </aside>
 
     <main>
-        <div class="name-header">Ansh <span>Jain</span></div>
-
-        <section id="about" class="intro-container">
-            <div class="profile-img-box">
-                <img src="https://raw.githubusercontent.com/Ajraja0205/Ajraja0205.github.io/main/image.jpg" alt="Ansh Jain">
-                <div class="moving-bubble" id="movingText">HI, I'M ANSH</div>
-            </div>
-            <div style="flex: 1; min-width: 300px;">
-                <span class="section-label">ABOUT ME</span>
-                <h1 class="role-display">GenAI Developer</h1>
-                <div class="tag-row">
-                    <span class="tag">Python</span>
-                    <span class="tag">Java</span>
-                    <span class="tag">RAG Architecture</span>
-                    <span class="tag">OpenAI APIs</span>
-                    <span class="tag">FastAPI</span>
+        <section id="about">
+            <div class="name-header">Ansh<br><span>Jain</span></div>
+            <div class="intro-container">
+                <div class="profile-img-box">
+                    <img src="https://raw.githubusercontent.com/Ajraja0205/Ajraja0205.github.io/main/image.jpg" alt="Ansh Jain">
+                    <div class="moving-bubble" id="movingText">HI, I'M ANSH</div>
                 </div>
-                <p style="color:var(--text-muted); line-height:1.8; max-width:600px;">
-                    GenAI-focused Software Engineer with 1.5 years of experience building automation and AI-powered systems. Expert in integrating OpenAI APIs and developing Retrieval-Augmented Generation (RAG) pipelines using embeddings and vector similarity search.
-                </p>
+                <div>
+                    <span class="section-label">GENAI DEVELOPER</span>
+                    <p style="color:var(--text-dark); font-size:18px; line-height:1.8; max-width:600px; font-weight: 300;">
+                        Focused on building <strong>scalable AI automation</strong>. With 1.5 years of experience at Verizon (via Creospan), I specialize in RAG architectures and production-grade LLM integrations.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <section id="experience" style="margin-bottom:100px;">
+        <section id="experience" style="margin-bottom:150px;">
             <span class="section-label">EXPERIENCE</span>
-            <h2 style="font-size:32px; margin-bottom:40px;">Professional Journey</h2>
+            <div class="exp-item">
+                <span class="job-title">Engineer // Sept 2024 – Present</span>
+                <div class="company">Creospan Pvt Ltd (Client: Verizon)</div>
+                <ul class="exp-list">
+                    <li>Designed and owned end-to-end Synthetic Monitoring solutions using Catchpoint across production environments.</li>
+                    <li>Built AI-powered ticket triaging systems using OpenAI APIs to classify incidents and suggest priority levels.</li>
+                    <li>Implemented RAG pipelines using embeddings and vector similarity search for contextual Q&A.</li>
+                    <li>Designed prompt-engineered workflows to generate structured summaries from complex logs.</li>
+                </ul>
+            </div>
             
             <div class="exp-item">
-                <div class="company">Creospan Pvt Ltd (Client: Verizon Communications)</div>
-                <div style="font-weight:600; margin-bottom: 5px;">Engineer | Sept 2024 – Present</div>
-                <ul class="exp-list">
-                    <li>Designed and owned end-to-end Synthetic Monitoring solutions using Catchpoint across production environments, tracking latency, availability, and reliability KPIs.</li>
-                    <li>Built Python-based automation to analyze monitoring datasets, detect traffic spikes/drops, and identify performance anomalies in high-volume environments.</li>
-                    <li>Built AI-powered ticket triaging systems using OpenAI APIs to classify incidents and suggest priority levels based on contextual understanding.</li>
-                    <li>Implemented prompt-engineered workflows to generate structured summaries from logs and monitoring metrics.</li>
-                    <li>Designed and implemented a Retrieval-Augmented Generation (RAG) pipeline using embeddings and vector similarity search to enable contextual Q&A over monitoring datasets.</li>
-                    <li>Evaluated LLM-generated summaries for relevance and grounding, comparing base model responses with retrieval-augmented outputs.</li>
-                </ul>
-            </div>
-
-            <div class="exp-item">
+                <span class="job-title">Intern // June 2024 – Aug 2024</span>
                 <div class="company">Cognizant</div>
-                <div style="font-weight:600; margin-bottom: 5px;">Intern | June 2024 – Aug 2024</div>
                 <ul class="exp-list">
-                    <li>Contributed to enterprise web application modules using modern web standards in an Agile development environment.</li>
-                    <li>Collaborated with senior engineers to refactor server-side code, ensuring alignment with enterprise-grade coding standards.</li>
+                    <li>Refactored server-side code for enterprise web modules using Java.</li>
                 </ul>
             </div>
         </section>
 
-        <section id="projects" style="margin-bottom:100px;">
-            <span class="section-label">SHOWCASE</span>
-            <h2 style="font-size:32px; margin-bottom:40px;">Selected Projects</h2>
+        <section id="projects" style="margin-bottom:150px;">
+            <span class="section-label">SELECTED WORKS</span>
             <div class="grid-container">
                 <div class="project-card" onclick="openModal('rag')">
-                    <span class="project-tag">RAG | PYTHON</span>
-                    <h3 style="margin-bottom:15px;">Monitoring Assistant</h3>
-                    <p style="color:var(--text-muted); font-size:14px;">Engineered document chunking and embedding generation for monitoring logs using OpenAI and FastAPI.</p>
+                    <span class="project-num">01</span>
+                    <h3>Monitoring Assistant</h3>
+                    <p>Vector similarity search & RAG pipeline for automated log analysis.</p>
                 </div>
-
                 <div class="project-card" onclick="openModal('triage')">
-                    <span class="project-tag">OPENAI | API</span>
-                    <h3 style="margin-bottom:15px;">AI Ticket Triaging</h3>
-                    <p style="color:var(--text-muted); font-size:14px;">Developed an LLM-based classification system to prioritize incident tickets via structured JSON prompts.</p>
+                    <span class="project-num">02</span>
+                    <h3>AI Ticket Triaging</h3>
+                    <p>Classification system using LLMs to prioritize incident response.</p>
                 </div>
-
                 <div class="project-card" onclick="openModal('anomaly')">
-                    <span class="project-tag">ML | FASTAPI</span>
-                    <h3 style="margin-bottom:15px;">Log Anomaly Detection</h3>
-                    <p style="color:var(--text-muted); font-size:14px;">Applied Isolation Forest techniques to identify abnormal traffic patterns in application logs.</p>
+                    <span class="project-num">03</span>
+                    <h3>Anomaly Detection</h3>
+                    <p>Scikit-learn implementation for real-time traffic pattern analysis.</p>
                 </div>
             </div>
         </section>
 
         <section id="contact">
-            <span class="section-label">GET IN TOUCH</span>
-            <h2 style="font-size:32px; margin-bottom:30px;">Connect</h2>
-            <div style="display: flex; gap: 30px; flex-wrap: wrap;">
-                <a href="mailto:anshjainraja@gmail.com" style="color:black; text-decoration:none; border-bottom: 2px solid var(--accent-purple); font-weight:700;">anshjainraja@gmail.com</a>
-                <a href="tel:+918209277624" style="color:black; text-decoration:none; border-bottom: 2px solid var(--accent-purple); font-weight:700;">(+91) 8209277624</a>
+            <span class="section-label">CONTACT</span>
+            <h2 style="font-size:40px; margin-bottom:30px;">Let's build the future <br>of AI together.</h2>
+            <p style="color:var(--text-muted); margin-bottom:40px;">Currently based in Pune, India. Open to high-impact GenAI roles.</p>
+            <div style="display: flex; gap: 30px; font-weight: 700; font-size: 20px;">
+                <a href="mailto:anshjainraja@gmail.com" style="color:var(--text-dark); text-decoration: none; border-bottom: 2px solid var(--accent-purple);">Email Me</a>
+                <a href="https://www.linkedin.com/in/ansh-jain1980/" style="color:var(--text-dark); text-decoration: none; border-bottom: 2px solid var(--accent-purple);">LinkedIn</a>
             </div>
         </section>
     </main>
@@ -259,13 +255,13 @@
     <div id="projectModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle" style="color:var(--accent-purple); margin-bottom:20px;"></h2>
-            <div id="modalBody" style="color:var(--text-muted); line-height:1.8;"></div>
+            <h2 id="modalTitle" style="font-size:32px; margin-bottom:20px; color:var(--accent-purple);"></h2>
+            <div id="modalBody" style="line-height:2; color:#444;"></div>
         </div>
     </div>
 
     <script>
-        // Scroll Progress Line (Right of Left Panel)
+        // Scroll Progress Line Logic
         window.onscroll = function() {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -273,42 +269,39 @@
             document.getElementById("progressBar").style.height = scrolled + "%";
         };
 
-        // Navigation Active Highlight
+        // Navigation Highlight Logic (Intersection Observer)
         const sections = document.querySelectorAll("section");
         const navLinks = document.querySelectorAll(".nav-link");
-        window.addEventListener("scroll", () => {
-            let current = "";
-            sections.forEach(section => {
-                if (pageYOffset >= section.offsetTop - 250) { current = section.getAttribute("id"); }
-            });
-            navLinks.forEach(link => {
-                link.classList.remove("active");
-                if (link.getAttribute("href").includes(current)) { link.classList.add("active"); }
-            });
-        });
 
-        // Bubble Text Rotation
-        const roles = ["HI, I'M ANSH", "GENAI DEVELOPER", "BACKEND ENGINEER"];
+        const observerOptions = { threshold: 0.4 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove("active");
+                        if (link.getAttribute("href").substring(1) === entry.target.id) {
+                            link.classList.add("active");
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+
+        // Moving Text Logic (No Underscore)
+        const texts = ["HI, I'M ANSH", "GENAI DEVELOPER", "BACKEND EXPERT"];
         let count = 0;
         setInterval(() => {
-            count = (count + 1) % roles.length;
-            document.getElementById('movingText').innerText = roles[count];
+            count = (count + 1) % texts.length;
+            document.getElementById('movingText').innerText = texts[count];
         }, 3500);
 
-        // Project Data (Full Details)
+        // Modal Logic
         const projectData = {
-            rag: {
-                title: "Context-Aware Monitoring Assistant (RAG)",
-                body: "<ul><li>Engineered document chunking and embedding generation pipelines for monitoring logs using OpenAI and Python.</li><li>Implemented top-k vector similarity search using cosine similarity to retrieve relevant context.</li><li>Injected retrieved context into structured prompts to reduce LLM hallucinations and improve response grounding.</li><li>Developed REST endpoints using FastAPI to serve the retrieval and generation pipeline.</li></ul>"
-            },
-            triage: {
-                title: "AI Ticket Triaging System",
-                body: "<ul><li>Developed an LLM-based classification system to categorize incident tickets using structured prompting.</li><li>Designed prompt templates to generate JSON outputs for priority and recommended actions.</li><li>Implemented validation logic to ensure consistent and structured model responses.</li><li>Exposed the classification pipeline via FastAPI for backend integration.</li></ul>"
-            },
-            anomaly: {
-                title: "Intelligent Log Anomaly Detection",
-                body: "<ul><li>Performed exploratory data analysis on application log metrics identifying abnormal traffic patterns using Scikit-learn and Pandas.</li><li>Applied Isolation Forest and statistical thresholding techniques to detect anomalies in time-series data.</li><li>Engineered features like rolling averages and deviation metrics to improve sensitivity.</li><li>Deployed real-time alert endpoints via FastAPI.</li></ul>"
-            }
+            rag: { title: "RAG Monitoring Assistant", body: "<ul><li>Engineered document chunking and embedding pipelines.</li><li>Implemented cosine similarity search using OpenAI.</li><li>Reduced hallucinations by 40% via context grounding.</li></ul>" },
+            triage: { title: "AI Ticket Triaging", body: "<ul><li>Automated classification of Jira incidents.</li><li>Built structured JSON prompt templates.</li><li>Integrated with FastAPI for real-time triaging.</li></ul>" },
+            anomaly: { title: "Log Anomaly Detection", body: "<ul><li>Used Isolation Forest algorithms for traffic analysis.</li><li>Identified response time spikes in high-volume environments.</li></ul>" }
         };
 
         function openModal(id) {
